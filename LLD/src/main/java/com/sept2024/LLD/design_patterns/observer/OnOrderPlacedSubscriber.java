@@ -1,0 +1,6 @@
+package com.sept2024.LLD.design_patterns.observer;
+
+public interface OnOrderPlacedSubscriber {
+    // this method will be implemented by all the subscribers
+    void announceOrderPlaced();
+}

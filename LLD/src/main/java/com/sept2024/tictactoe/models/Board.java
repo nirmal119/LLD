@@ -23,7 +23,7 @@ public class Board {
     public void printBoard() {
         for(List<Cell> row: board) {
             for(Cell cell: row) {
-                System.out.println();
+                cell.printCell();
             }
         }
     }

@@ -83,6 +83,33 @@ public class Game {
         this.winningStrategies = winningStrategies;
     }
 
+    public void makeMove() {
+        Player currentPlayer = players.get(nextPlayerMoveIndex);
+
+        System.out.println("Current player name is " + currentPlayer.getName());
+
+        Move move = currentPlayer.makeMove(board);
+
+        System.out.println("Player want to make a move at " + move.getCell().getRow());
+
+        // Add a player/symbol on thr board
+
+        int row = move.getCell().getRow();
+        int column = move.getCell().getColumn();
+
+        Cell cellToChange = board.getBoard().get(row).get(column);
+        cellToChange.setPlayer(currentPlayer);
+        cellToChange.setCellState(CellState.FILLED);
+
+        Move finalMoveObject = new Move(currentPlayer, cellToChange);
+
+        moves.add(finalMoveObject);
+
+        // update next player
+        nextPlayerMoveIndex += 1;
+        nextPlayerMoveIndex %= players.size();
+    }
+
     public static Builder getBuilder() {
         return new Builder();
     }

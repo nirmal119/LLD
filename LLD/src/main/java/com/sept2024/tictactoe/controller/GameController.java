@@ -33,7 +33,7 @@ public class GameController {
 
     }
 
-    public void makeMove() {
+    public void makeMove(Game game) {
 
     }
 

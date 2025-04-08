@@ -20,14 +20,14 @@ public class Main {
         int dimension = 3;
         List<Player> players = new ArrayList<>();
         players.add(new Player("Tyson", 1, new Symbol('X'), PlayerType.HUMAN));
-        players.add(new Player("Kai", 2, new Symbol('O'), PlayerType.HUMAN));
+        players.add(new Bot("Kai", 2, new Symbol('O'), PlayerType.BOT, BotDifficultyLevel.EASY));
 
         List<WinningStrategy> winningStrategies = new ArrayList<>();
         winningStrategies.add(new RowWinningStrategy());
         winningStrategies.add(new ColWinningStrategy());
         winningStrategies.add(new DiagonalWinningStrategy());
 
-        int nextPlayerMoveIndex = 1;
+        int nextPlayerMoveIndex = 0;
 
         GameController gameController = new GameController();
         Game game = gameController.startGame(dimension, players, nextPlayerMoveIndex, winningStrategies);
@@ -36,7 +36,12 @@ public class Main {
             // print the board
             // Make a move
             // next player change
+            gameController.printGame(game);
+            gameController.makeMove(game);
         }
+
+        gameController.printGame(game);
+        System.out.println(game.getWinner().getName() + " won the game!");
 
     }
 }

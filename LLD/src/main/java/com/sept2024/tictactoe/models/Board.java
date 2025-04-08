@@ -13,11 +13,12 @@ public class Board {
 
         for(int i=0; i<dimension; i++) {
             board.add(new ArrayList<>());
-
             for(int j=0; j<dimension; j++) {
                 board.get(i).add(new Cell(i,j, CellState.EMPTY));
             }
         }
+
+        System.out.println("board size= " + board.size());
     }
 
     public void printBoard() {
@@ -25,6 +26,7 @@ public class Board {
             for(Cell cell: row) {
                 cell.printCell();
             }
+            System.out.println();
         }
     }
 

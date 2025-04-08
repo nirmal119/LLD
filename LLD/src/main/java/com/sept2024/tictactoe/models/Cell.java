@@ -46,9 +46,9 @@ public class Cell {
 
     public void printCell() {
         if(player == null) {
-            System.out.println("|   |");
+            System.out.print("|   |");
         } else {
-            System.out.println("| " + player.getSymbol().getaChar() + " |");
+            System.out.print("| " + player.getSymbol().getaChar() + " |");
         }
     }
 }

@@ -90,7 +90,7 @@ public class Game {
 
         Move move = currentPlayer.makeMove(board);
 
-        System.out.println("Player want to make a move at " + move.getCell().getRow());
+        System.out.println("Player want to make a move at " + move.getCell().getRow() + ", " + move.getCell().getColumn());
 
         // Add a player/symbol on thr board
 
@@ -108,6 +108,22 @@ public class Game {
         // update next player
         nextPlayerMoveIndex += 1;
         nextPlayerMoveIndex %= players.size();
+        
+        if(checkWinner(finalMoveObject)) {
+            winner = currentPlayer;
+            gameState = GameState.ENDED;
+        } else if (moves.size() == (board.getDimension()) * board.getDimension()) {
+            gameState = GameState.DRAW;
+        }
+    }
+
+    public boolean checkWinner(Move move) {
+        for(WinningStrategy winningStrategy: winningStrategies) {
+            if(winningStrategy.checkWinner(board, move)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static Builder getBuilder() {

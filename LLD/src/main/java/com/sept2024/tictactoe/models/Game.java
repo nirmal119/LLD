@@ -126,6 +126,28 @@ public class Game {
         return false;
     }
 
+    public void undo() {
+        if(moves.isEmpty()) {
+            System.out.println("No moves played yet.");
+            return;
+        }
+
+        Move lastMove = moves.get(moves.size() - 1);
+        moves.remove(lastMove);
+
+        Cell cell = lastMove.getCell();
+        cell.setCellState(CellState.EMPTY);
+        cell.setPlayer(null);
+
+        for(WinningStrategy winningStrategy: winningStrategies) {
+            winningStrategy.undo(board, lastMove);
+        }
+
+        // undo next player move index
+        nextPlayerMoveIndex -= 1;
+        nextPlayerMoveIndex = (nextPlayerMoveIndex + players.size()) % players.size();
+    }
+
     public static Builder getBuilder() {
         return new Builder();
     }

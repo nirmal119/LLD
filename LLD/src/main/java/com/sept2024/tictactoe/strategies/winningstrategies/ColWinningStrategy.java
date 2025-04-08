@@ -27,4 +27,9 @@ public class ColWinningStrategy implements WinningStrategy{
 
         return colMap.get(col).get(move.getPlayer()) == board.getDimension();
     }
+
+    @Override
+    public void undo(Board board, Move move) {
+
+    }
 }

@@ -10,6 +10,7 @@ import com.sept2024.tictactoe.strategies.winningstrategies.WinningStrategy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /*
     Client class
@@ -17,6 +18,8 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) throws InvalidBotCountException {
+
+        Scanner scanner = new Scanner(System.in);
         int dimension = 3;
         List<Player> players = new ArrayList<>();
         players.add(new Player("Tyson", 1, new Symbol('X'), PlayerType.HUMAN));
@@ -38,6 +41,14 @@ public class Main {
             // next player change
             gameController.printGame(game);
             gameController.makeMove(game);
+
+            System.out.println("undo move?  Enter y/n");
+            String undo = scanner.next();
+            if(undo.equals("y")) {
+                gameController.undo(game);
+            } else if (!undo.equals("n")) {
+                System.out.println("Invalid command!");
+            }
         }
 
         gameController.printGame(game);
